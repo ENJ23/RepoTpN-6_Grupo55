@@ -59,6 +59,7 @@ class CreditoTest {
     	assertTrue(montoTotal == factura.calcularTotal());
     	
     }
+ 
     
     @Test
     public void testMontoTotalYTotalTarjeta() {
