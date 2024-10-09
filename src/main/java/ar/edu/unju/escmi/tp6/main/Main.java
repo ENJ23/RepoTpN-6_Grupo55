@@ -35,6 +35,7 @@ public class Main {
         long nroFactura = 0;
         int opcion = 0;
         double precioMaximo = 1500000;
+        double precioMaximoCelulares = 800000;
         do {
         	System.out.println("\n====== Menu Principal =====");
             System.out.println("1- Realizar una venta con el programa “Ahora 30” ");
@@ -92,8 +93,8 @@ public class Main {
 		            		if(tarjetaComprador.getLimiteCompra() < precioTotal) {
 		            			System.out.println("No hay fondos suficientes para la operacion");
 		            		}else {
-		            			if (nuevaFactura.calcularTotal() > precioMaximo) {
-		            				System.out.println("El total es mayor al precio máximo disponible en el plan 'Ahora 30' (1.500.000)");
+		            			if ((nuevaFactura.calcularTotal() > precioMaximo) || (producto.getDescripcion().startsWith("Celular") && nuevaFactura.calcularTotal() > 800000)) {
+		            				System.out.println("El total es mayor al precio máximo disponible en el plan 'Ahora 30' (1.500.000 Para electrodomésticos y 800.000 para celulares)");
 		            			}else {
 				            		Credito nuevoCredito = new Credito(tarjetaComprador,nuevaFactura,cuotas);
 				            		CollectionCredito.agregarCredito(nuevoCredito);

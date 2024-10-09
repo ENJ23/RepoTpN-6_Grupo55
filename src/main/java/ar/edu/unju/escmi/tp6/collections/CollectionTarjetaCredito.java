@@ -13,7 +13,7 @@ public class CollectionTarjetaCredito {
 
     public static void precargarTarjetas() {
 		if (tarjetas.isEmpty()) {
-			tarjetas.add(new TarjetaCredito(232323, LocalDate.of(2026,10,10), CollectionCliente.buscarCliente(45111222), 800000));
+			tarjetas.add(new TarjetaCredito(232323, LocalDate.of(2026,10,10), CollectionCliente.buscarCliente(45111222), 1200000));
 			tarjetas.add(new TarjetaCredito(4458444, LocalDate.of(2030, 3, 15), CollectionCliente.buscarCliente(36888666), 900000));
 			tarjetas.add(new TarjetaCredito(8754566, LocalDate.of(2030, 4, 21), CollectionCliente.buscarCliente(25777555), 1000000));
 		}
