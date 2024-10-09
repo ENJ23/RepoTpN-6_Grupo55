@@ -1,0 +1,44 @@
+a) ¿Por qué no se dibuja la relación de agregación entre la clase CollectionProducto y
+Producto?
+
+No se dibuja una relacion entre CollectionProducto y Producto porque una clase de colección es simplemente una estructura de almacenamiento y no tiene una relación de "propiedad" directa sobre los objetos que contiene, osea que maneja una lista de objetos, pero no los "posee" ni es responsable de su existencia o destrucción.
+
+b) ¿Cuántos atributos tiene la clase Factura? ¿Cuáles son los nombres de esos
+atributos?
+
+La clase Factura tiene cuatro atributos
+
+fecha - nroFactura - cliente - detalles
+c) ¿Cómo se llama la relación que se establece entre Factura y Detalle?
+
+La relación entre Factura y Detalle es una composición.
+
+d) ¿Cómo se llama la relación entre las clases Factura y Cliente?
+
+La relación entre Factura y Cliente es una composición.
+
+e) ¿Por qué los atributos de las clases Collections son públicos?
+
+Los atributos de las clases Collection son públicos para que puedan ser accedidos directamente por otras clases del sistema.
+
+f) Describa las características de todos los métodos de la clase CollectionClientes.
+
+Los métodos de la clase CollectionClientes son:
+
+agregarCliente(in cliente: Cliente):
+
+Propósito: Este método agrega un nuevo cliente a la colección de clientes.
+Parámetro: Un objeto Cliente que se va a añadir.
+Retorno: Ninguno (void).
+
+buscarCliente(in dni: long):
+
+Propósito: Este método busca un cliente en la colección de clientes, utilizando el número de documento como criterio de búsqueda.
+Parámetro: Un long que representa el dni del cliente a buscar.
+Retorno: Retorna un objeto Cliente si se encuentra, o null si no existe un cliente con ese dni.
+
+precargarClientes():
+
+Propósito: Pre-carga clientes en la colección, para pruebas o inicializar el sistema con algunos datos.
+Parámetros: No tiene parámetros.
+Retorno: Ninguno (void).
