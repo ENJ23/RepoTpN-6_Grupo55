@@ -1,7 +1,7 @@
 a) ¿Por qué no se dibuja la relación de agregación entre la clase CollectionProducto y
 Producto?
 
-No se dibuja una relacion entre CollectionProducto y Producto porque una clase de colección es simplemente una estructura de almacenamiento y no tiene una relación de "propiedad" directa sobre los objetos que contiene, osea que maneja una lista de objetos, pero no los "posee" ni es responsable de su existencia o destrucción.
+No se dibuja una relacion entre CollectionProducto y Producto porque en el diagrama, la relación entre CollectionProducto y Producto se representa mediante la anotación + productos: Producto[1..*], lo que significa que CollectionProducto contiene un conjunto de objetos Producto. Esta anotación se conoce como "agregación" y representa una relación "tiene-un".
 
 b) ¿Cuántos atributos tiene la clase Factura? ¿Cuáles son los nombres de esos
 atributos?
