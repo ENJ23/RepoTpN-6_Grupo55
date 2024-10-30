@@ -36,11 +36,7 @@ public class Main {
         int opcion = 0;
         double precioMaximo = 1500000;
         double precioMaximoCelulares = 800000;
-       
-        	
-        
-        do { 
-        	try {
+        do {
         	System.out.println("\n====== Menu Principal =====");
             System.out.println("1- Realizar una venta con el programa “Ahora 30” ");
             System.out.println("2- Revisar compras realizadas por el cliente (debe ingresar el DNI del cliente)");
@@ -52,10 +48,6 @@ public class Main {
             System.out.println("Ingrese su opcion: ");
             opcion = scanner.nextInt();
             scanner.nextLine();
-            }catch (Exception e){
-				scanner.nextLine();
-				opcion = 999;
-            }
             switch(opcion) {
             
             case 1:
@@ -73,17 +65,17 @@ public class Main {
 	            	System.out.println("Stock Disponible en 'Ahora 30': ");
 	            	CollectionStock.stockAhora30();
 	            	
-	            	System.out.println("Ingrese el código del producto que desea comprar: ");
+	            	System.out.println("Ingrese el código del producto que desea comprar");
 	            		long codigoProducto =  scanner.nextLong();
 	            		scanner.nextLine();
 	            		Producto producto = CollectionProducto.buscarProducto(codigoProducto);
-	            		if (producto != null) {
-	            		System.out.println("Cuantos quiere comprar?");
+	            	System.out.println("Cuantos quiere comprar?");
 	            		int cantidad = scanner.nextInt();
 	            		scanner.nextLine();
             	
-            		
+            		if (producto != null) {
 	            		Stock stock = CollectionStock.buscarStock(producto);
+	            		CollectionStock.reducirStock(stock, cantidad);
 	            		double precioTotal = producto.getPrecioUnitario()*cantidad;
 	            		
 	            		Detalle detalle = new Detalle(cantidad, precioTotal,producto);
@@ -92,6 +84,7 @@ public class Main {
 	            		
 	            		nroFactura++;
 	            		Factura nuevaFactura = new Factura(LocalDate.now(),nroFactura,comprador,detalles);
+	            		CollectionFactura.agregarFactura(nuevaFactura);
 	            		
 	            		List<Cuota> cuotas = new ArrayList<>();
 	            		
@@ -100,13 +93,9 @@ public class Main {
 		            		if(tarjetaComprador.getLimiteCompra() < precioTotal) {
 		            			System.out.println("No hay fondos suficientes para la operacion");
 		            		}else {
-		            			if ((nuevaFactura.calcularTotal() > precioMaximo) || (producto.getDescripcion().startsWith("Celular") && nuevaFactura.calcularTotal() > precioMaximoCelulares)) {
+		            			if ((nuevaFactura.calcularTotal() > precioMaximo) || (producto.getDescripcion().startsWith("Celular") && nuevaFactura.calcularTotal() > 800000)) {
 		            				System.out.println("El total es mayor al precio máximo disponible en el plan 'Ahora 30' (1.500.000 Para electrodomésticos y 800.000 para celulares)");
 		            			}else {
-		            				
-		            				CollectionFactura.agregarFactura(nuevaFactura);
-		            				CollectionStock.reducirStock(stock, cantidad);
-
 				            		Credito nuevoCredito = new Credito(tarjetaComprador,nuevaFactura,cuotas);
 				            		CollectionCredito.agregarCredito(nuevoCredito);
 				            		
@@ -115,8 +104,6 @@ public class Main {
 				            		System.out.println(nuevaFactura);
 		            				}	
 		            			}
-	            			}else {
-	            				System.out.println("El codigo de producto no pertenece a ningún producto");
 	            			}
 	            	}
             		else
@@ -179,6 +166,8 @@ public class Main {
 		            		System.out.println("Este cliente no tiene ninguna tarjeta asociada");
 		            	}else {
 		            		
+		            		//tarjetaBuscada.mostrarDatos(opcion);
+		            	//System.out.println(tarjetaBuscada);
 		            	CollectionCredito.listarCreditosCliente(tarjetaBuscada);
 		            	}
 	            	
